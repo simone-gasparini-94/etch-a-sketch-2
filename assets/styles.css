@@ -3,6 +3,21 @@
 *::after {
     box-sizing: border-box;
     margin: 0;
-    border: 0;
+    padding: 0;
 }
 
+.grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+}
+
+.square {
+    border: 0.1px solid hsl(0, 0%, 30%);
+
+    height: 30px;
+    width: 30px;
+}
