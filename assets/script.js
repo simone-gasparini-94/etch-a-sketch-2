@@ -1,5 +1,4 @@
 const grid = document.querySelector(".grid");
-const createBtn = document.querySelector(".create-btn");
 const input = document.querySelector("#input-size");
 const drawBtn = document.querySelector(".draw");
 const eraseBtn = document.querySelector(".erase");
@@ -77,7 +76,7 @@ function isMouseUp() {
 }
 
 
-createBtn.addEventListener("click", createSquares);
+input.addEventListener("input", createSquares);
 
 window.addEventListener("load", activateDraw);
 drawBtn.addEventListener("click", activateDraw);
