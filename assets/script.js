@@ -1,6 +1,7 @@
 const grid = document.querySelector(".grid");
 const input = document.querySelector("#input");
-const drawBtn = document.querySelector(".draw");
+const blackBtn = document.querySelector(".black");
+const rgbBtn = document.querySelector(".rgb");
 const eraseBtn = document.querySelector(".erase");
 const clearBtn = document.querySelector(".clear");
 
@@ -41,11 +42,21 @@ function createSquares() {
 }
 
 function draw(event) {
-    if(mouseDown === false) return;
-    if(drawBtn.classList.contains("active")) {
-        event.target.style.backgroundColor = getRandomColor();
-    } else if(eraseBtn.classList.contains("active")) {
-        event.target.style.backgroundColor = "white";
+    if (!mouseDown) return;
+
+    switch (true) {
+        case blackBtn.classList.contains("active"):
+            event.target.style.backgroundColor = "black";
+            break;
+        case rgbBtn.classList.contains("active"):
+            event.target.style.backgroundColor = getRandomColor();
+            break;
+        case eraseBtn.classList.contains("active"):
+            event.target.style.backgroundColor = "white";
+            break;
+        default:
+            event.target.style.backgroundColor = "black";
+            break;
     }
 }
 
@@ -59,13 +70,21 @@ function getRandomColor() {
     return color;
 }
 
-function activateDraw() {
-    drawBtn.classList.add("active");
+function activateBlack() {
+    blackBtn.classList.add("active");
+    rgbBtn.classList.remove("active");
+    eraseBtn.classList.remove("active");
+}
+
+function activateRGB() {
+    blackBtn.classList.remove("active");
+    rgbBtn.classList.add("active");
     eraseBtn.classList.remove("active");
 }
 
 function activateErase() {
-    drawBtn.classList.remove("active");
+    blackBtn.classList.remove("active");
+    rgbBtn.classList.remove("active");
     eraseBtn.classList.add("active");
 }
 
@@ -81,11 +100,12 @@ function clearGrid() {
     createSquares();
 }
 
-window.addEventListener("load", activateDraw);
+window.addEventListener("load", activateBlack);
 
 input.addEventListener("input", createSquares);
 
-drawBtn.addEventListener("click", activateDraw);
+blackBtn.addEventListener("click", activateBlack);
+rgbBtn.addEventListener("click", activateRGB);
 eraseBtn.addEventListener("click", activateErase);
 
 clearBtn.addEventListener("click", clearGrid)
