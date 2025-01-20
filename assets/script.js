@@ -9,6 +9,8 @@ const gridSize = {
     height: parseFloat(getComputedStyle(grid).height),
 }
 
+let mouseDown = false;
+
 function createSquares() {
     grid.innerHTML = "";
 
@@ -38,6 +40,7 @@ function createSquares() {
 }
 
 function draw(event) {
+    if(mouseDown === false) return;
     if(drawBtn.classList.contains("active")) {
         event.target.style.backgroundColor = getRandomColor();
     } else if(eraseBtn.classList.contains("active")) {
@@ -65,10 +68,23 @@ function activateErase() {
     eraseBtn.classList.add("active");
 }
 
+function isMouseDown() {
+    mouseDown = true;
+}
+
+function isMouseUp() {
+    mouseDown = false;
+}
+
+
 createBtn.addEventListener("click", createSquares);
 
 window.addEventListener("load", activateDraw);
 drawBtn.addEventListener("click", activateDraw);
 eraseBtn.addEventListener("click", activateErase);
+
+document.addEventListener("mousedown", isMouseDown);
+document.addEventListener("mouseup", isMouseUp);
+
 
 createSquares();
