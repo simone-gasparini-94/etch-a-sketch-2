@@ -1,8 +1,8 @@
 const grid = document.querySelector(".grid");
 
 const gridSize = {
-    width: 960,
-    height: 960,
+    width: parseFloat(getComputedStyle(grid).width),
+    height: parseFloat(getComputedStyle(grid).height),
 }
 
 function createSquares(number) {
