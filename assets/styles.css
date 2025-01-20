@@ -9,6 +9,9 @@
 .grid {
     display: flex;
     flex-direction: column;
+
+    width: 960px;
+    height: 960px;
 }
 
 .row {
@@ -17,7 +20,4 @@
 
 .square {
     border: 0.1px solid hsl(0, 0%, 30%);
-
-    height: 30px;
-    width: 30px;
 }
