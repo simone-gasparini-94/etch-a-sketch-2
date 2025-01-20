@@ -1,7 +1,8 @@
 const grid = document.querySelector(".grid");
-const input = document.querySelector("#input-size");
+const input = document.querySelector("#input");
 const drawBtn = document.querySelector(".draw");
 const eraseBtn = document.querySelector(".erase");
+const clearBtn = document.querySelector(".clear");
 
 const gridSize = {
     width: parseFloat(getComputedStyle(grid).width),
@@ -34,6 +35,7 @@ function createSquares() {
             square.style.height = squareSize.height;
             square.addEventListener("mouseover", draw);
             row.appendChild(square);
+            
         }
     }
 }
@@ -75,12 +77,18 @@ function isMouseUp() {
     mouseDown = false;
 }
 
+function clearGrid() {
+    createSquares();
+}
+
+window.addEventListener("load", activateDraw);
 
 input.addEventListener("input", createSquares);
 
-window.addEventListener("load", activateDraw);
 drawBtn.addEventListener("click", activateDraw);
 eraseBtn.addEventListener("click", activateErase);
+
+clearBtn.addEventListener("click", clearGrid)
 
 document.addEventListener("mousedown", isMouseDown);
 document.addEventListener("mouseup", isMouseUp);
