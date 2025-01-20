@@ -16,7 +16,8 @@ body {
     height: 100vh;
 }
 
-.input-container {
+.input-container,
+.buttons-container {
     margin-bottom: 40px;
 }
 
@@ -35,4 +36,8 @@ body {
 
 .square {
     border: 0.1px solid hsl(0, 0%, 30%);
+}
+
+.active {
+    background-color: yellow;
 }

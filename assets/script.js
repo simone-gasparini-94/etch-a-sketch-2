@@ -1,6 +1,8 @@
 const grid = document.querySelector(".grid");
 const createBtn = document.querySelector(".create-btn");
 const input = document.querySelector("#input-size");
+const drawBtn = document.querySelector(".draw");
+const eraseBtn = document.querySelector(".erase");
 
 const gridSize = {
     width: parseFloat(getComputedStyle(grid).width),
@@ -29,14 +31,18 @@ function createSquares() {
             }
             square.style.width = squareSize.width;
             square.style.height = squareSize.height;
-            square.addEventListener("mouseover", changeColor);
+            square.addEventListener("mouseover", draw);
             row.appendChild(square);
         }
     }
 }
 
-function changeColor(event) {
-    event.target.style.backgroundColor = getRandomColor();
+function draw(event) {
+    if(drawBtn.classList.contains("active")) {
+        event.target.style.backgroundColor = getRandomColor();
+    } else if(eraseBtn.classList.contains("active")) {
+        event.target.style.backgroundColor = "white";
+    }
 }
 
 function getRandomColor() {
@@ -49,8 +55,20 @@ function getRandomColor() {
     return color;
 }
 
+function activateDraw() {
+    drawBtn.classList.add("active");
+    eraseBtn.classList.remove("active");
+}
+
+function activateErase() {
+    drawBtn.classList.remove("active");
+    eraseBtn.classList.add("active");
+}
+
 createBtn.addEventListener("click", createSquares);
 
-createSquares();
+window.addEventListener("load", activateDraw);
+drawBtn.addEventListener("click", activateDraw);
+eraseBtn.addEventListener("click", activateErase);
 
-getRandomColor();
+createSquares();
