@@ -36,9 +36,21 @@ function createSquares() {
 }
 
 function changeColor(event) {
-    event.target.style.backgroundColor = "red";
+    event.target.style.backgroundColor = getRandomColor();
+}
+
+function getRandomColor() {
+    const colors = [
+        "rgb(255, 0, 0)",
+        "rgb(0, 255, 0)",
+        "rgb(0, 0, 255)",
+    ]
+    let color = colors[Math.floor(Math.random() * 3)];
+    return color;
 }
 
 createBtn.addEventListener("click", createSquares);
 
 createSquares();
+
+getRandomColor();
