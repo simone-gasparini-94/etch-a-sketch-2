@@ -1,2 +1,3 @@
 # etch-a-sketch-2
-Second attempt of the TOP project to see my improvement
+
+A simple Etch-a-Sketch web app to draw on click.
